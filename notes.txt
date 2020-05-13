@@ -1,0 +1,8 @@
+1. Background on how and why this will work
+2. What you need to know
+3. Manual ATC and figure out API calls
+   - write these down
+3. Finding out links via the product page
+4. Finding out links via their API
+5. Automate this
+6. Deploy this somewhere for everyone to use
