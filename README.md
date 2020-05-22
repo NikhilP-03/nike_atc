@@ -9,6 +9,7 @@ $ git clone git@github.com:romeldris/nike_atc.git
 2. Run npm install
 
 ```
+$ cd nike_atc
 $ npm run install
 ```
 
