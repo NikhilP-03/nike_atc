@@ -42,7 +42,7 @@ const Product = () => {
     fetchData();
   }, [sku, country]);
 
-  const atc = async () => {
+  const atc = async (skuId) => {
     setErrors([]);
     if (!abck && !accessToken) {
       return alert('enter valid tokens');
@@ -52,7 +52,7 @@ const Product = () => {
       body: JSON.stringify({
         abck,
         accessToken,
-        skuId: product.skuId,
+        skuId,
         slug: product.slug,
         sku,
       }),
