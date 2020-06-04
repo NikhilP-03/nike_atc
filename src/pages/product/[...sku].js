@@ -81,7 +81,7 @@ const Product = () => {
             placeholder="set access token"
             value={accessToken}
             onChange={(e) => setAccessToken(e.target.value)}
-          />{' '}
+          />
           <a href="" />
           <br />
           {title} {url}

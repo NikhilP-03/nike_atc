@@ -4,7 +4,7 @@ const generateAbck = () => {
   return new Promise(async (resolve, reject) => {
     let gotAbck = null;
     let foundAbck = false;
-    let attempts = 50;
+    let attempts = 1;
     while (!foundAbck && attempts > 0) {
       try {
         gotAbck = await getAbck('https://nike.com/');

@@ -11,6 +11,7 @@ const getAbck = (url) => {
         Math.random() * 5,
       )}"]`;
       const browser = await puppeteer.launch({
+        headless: false,
         defaultViewport: {
           width: 1920 - Math.floor(Math.random() * 5) * 10,
           height: 1080 + Math.floor(Math.random() * 5) * 10,
@@ -28,8 +29,6 @@ const getAbck = (url) => {
 
       await cursor.click();
       const cookies = await page.cookies();
-      console.log('I have a cookie for you');
-      console.log(cookies.find((cookie) => cookie.name === '_abck').value);
       await browser.close();
       return resolve(cookies.find((cookie) => cookie.name === '_abck').value);
     } catch (e) {
