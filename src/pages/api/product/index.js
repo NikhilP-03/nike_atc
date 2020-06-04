@@ -1,5 +1,27 @@
+import getAbck from '../../../util/abck';
+
+const generateAbck = () => {
+  return new Promise(async (resolve, reject) => {
+    let gotAbck = null;
+    let foundAbck = false;
+    let attempts = 50;
+    while (!foundAbck && attempts > 0) {
+      try {
+        gotAbck = await getAbck('https://nike.com/');
+        if (!gotAbck.includes('==')) {
+          foundAbck = true;
+          resolve(gotAbck);
+        } else {
+          attempts--;
+        }
+      } catch (e) {
+        attempts--;
+      }
+    }
+  });
+};
+
 const add = async ({ abck, accessToken, skuId, slug, sku }) => {
-  // TODO: update CA to your country
   return fetch(
     'https://api.nike.com/buy/carts/v2/CA/NIKE/NIKECOM?modifiers=VALIDATELIMITS,VALIDATEAVAILABILITY',
     {
@@ -27,10 +49,17 @@ const add = async ({ abck, accessToken, skuId, slug, sku }) => {
   );
 };
 export default async function productHandler(req, res) {
-  const { abck, accessToken, skuId, slug, sku } = JSON.parse(req.body);
   switch (req.method) {
     case 'POST':
-      const response = await add({ abck, accessToken, skuId, slug, sku });
+      const { abck, accessToken, skuId, slug, sku } = JSON.parse(req.body);
+      const abckCookie = await generateAbck();
+      const response = await add({
+        abck: abckCookie,
+        accessToken,
+        skuId,
+        slug,
+        sku,
+      });
       if (response.status > 300) {
         res.statusCode = response.status;
         const err = await response.text();

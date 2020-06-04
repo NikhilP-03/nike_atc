@@ -84,13 +84,6 @@ const Product = () => {
           />{' '}
           <a href="" />
           <br />
-          abck:
-          <textarea
-            placeholder="set abck"
-            value={abck}
-            onChange={(e) => setAbck(e.target.value)}
-          />
-          <br />
           {title} {url}
           <img src={squarishURL} width={100} />
           {skuInfos.map(
